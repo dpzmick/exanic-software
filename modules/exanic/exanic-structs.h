@@ -6,6 +6,7 @@
 #ifndef _EXANIC_STRUCTS_H_
 #define _EXANIC_STRUCTS_H_
 
+#undef CONFIG_PTP_1588_CLOCK
 #if defined(CONFIG_PTP_1588_CLOCK) || defined(CONFIG_PTP_1588_CLOCK_MODULE)
 #include <linux/ptp_clock_kernel.h>
 #endif
@@ -146,10 +147,10 @@ struct exanic
 
     struct hrtimer phc_pps_hrtimer;
     bool phc_pps_enabled;
-    time_t last_phc_pps;
+    __kernel_time_t last_phc_pps;
 
     enum per_out_mode per_out_mode;
-    ktime_t per_out_start;
+    __kernel_time_t per_out_start;
 #endif
 
     bool unsupported;
